@@ -19,3 +19,10 @@ def mask_account_card(account_card_num: str) -> str:
     result = " ".join(account_card_num_list)
 
     return result
+
+
+def get_date(date: str) -> str:
+    """Принимает строку с датой в одном формате и возвращает в другом"""
+    result = date[8:10] + "." + date[5:7] + "." + date[:4]
+
+    return result
