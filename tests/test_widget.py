@@ -1,6 +1,6 @@
 import pytest
 
-from src.widjet import mask_account_card, get_date
+from src.widjet import get_date, mask_account_card
 
 
 def test_get_date_type():
