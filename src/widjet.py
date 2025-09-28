@@ -23,6 +23,15 @@ def mask_account_card(account_card_num: str) -> str:
 
 def get_date(date: str) -> str:
     """Принимает строку с датой в одном формате и возвращает в другом"""
-    result = date[8:10] + "." + date[5:7] + "." + date[:4]
+    if not isinstance(date, str):
+        raise TypeError("Дата должна иметь тип str")
 
-    return result
+    elif len(date) != 26:
+        return "Указан неверный формат даты"
+
+    elif date[8:10].isdigit() and date[5:7].isdigit() and date[:4].isdigit():
+        result = date[8:10] + "." + date[5:7] + "." + date[:4]
+        return result
+
+    else:
+        return "Дата не должна содержать букв"
