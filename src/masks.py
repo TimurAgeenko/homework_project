@@ -1,5 +1,14 @@
 def get_mask_card_number(card_number: str) -> str:
     """Принимает номер карты и возвращает его замаскированный вариант"""
+    if not isinstance(card_number, str):
+        raise TypeError("Номер карты должен иметь тип str")
+
+    elif card_number.isalpha():
+        return "В номере карты не должно быть букв"
+
+    elif len(card_number) != 16:
+        return "Номер карты должен состоять из 16 цифр"
+
     result = card_number[:4] + " " + card_number[4:6] + "** **** " + card_number[-4:]
 
     return result
