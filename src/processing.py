@@ -6,7 +6,7 @@ from src.widjet import get_date
 def filter_by_state(info: list[dict], state: str = "EXECUTED") -> list[dict]:
     """Принимает список с информацией и возвращает отредактированный список
     со словарями, у которых ключ state принимает указанное значение"""
-    if not isinstance(info, list):
+    if not isinstance(info, list) or not isinstance(state, str):
         raise TypeError("Переданы некорректные данные")
 
     if not isinstance(state, str):
