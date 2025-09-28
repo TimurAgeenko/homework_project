@@ -9,9 +9,6 @@ def filter_by_state(info: list[dict], state: str = "EXECUTED") -> list[dict]:
     if not isinstance(info, list) or not isinstance(state, str):
         raise TypeError("Переданы некорректные данные")
 
-    if not isinstance(state, str):
-        raise TypeError("Переданы некорректные данные")
-
     result = []
 
     for item in info:
@@ -23,6 +20,15 @@ def filter_by_state(info: list[dict], state: str = "EXECUTED") -> list[dict]:
 
 def sort_by_date(info: list[dict], reverse: bool = True) -> list[dict]:
     """Принимает список и возвращает его отсортированный по дате вариант, по умолчанию - по убыванию"""
+    if not isinstance(info, list) or not isinstance(reverse, bool):
+        raise TypeError("Переданы некорректные данные")
+
+    for item in info:
+        if len(item["date"]) != 26:
+            raise ValueError("Указан неверный формат даты")
+        elif not item["date"][8:10].isdigit() or not item["date"][5:7].isdigit() or not item["date"][:4].isdigit():
+            raise ValueError("Дата не должна содержать букв")
+
     result = sorted(info, key=lambda x: dt.datetime.strptime(get_date(x["date"]), "%d.%m.%Y"), reverse=reverse)
 
     return result
