@@ -12,3 +12,11 @@ def filter_by_currency(info: list[dict], currency: str) -> Union[Iterator[dict] 
 
     for item in result:
         yield item
+
+
+def transaction_descriptions(info: list[dict]) -> Union[Iterator[str] or str]:
+    if not isinstance(info, list) or not info:
+        return "Переданы некорректные данные"
+
+    for item in info:
+        yield item["description"]

@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import filter_by_currency
+from src.generators import filter_by_currency, transaction_descriptions
 
 
 def test_filter_by_currency(transactions):
@@ -86,3 +86,18 @@ def test_filter_by_currency_empty_result(transactions):
         next(filter_by_currency(transactions, "123"))
 
     assert str(exc_info.value) == "Транзакции с указанной валютой не проводились"
+
+
+def test_transaction_descriptions(transactions):
+    generator = transaction_descriptions(transactions)
+    assert next(generator) == "Перевод организации"
+    assert next(generator) == "Перевод со счета на счет"
+    assert next(generator) == "Перевод со счета на счет"
+
+
+def test_transaction_descriptions_type_or_empty(transactions):
+    with pytest.raises(StopIteration) as exc_info:
+        next(transaction_descriptions(int))
+        next(transaction_descriptions([]))
+
+    assert str(exc_info.value) == "Переданы некорректные данные"
