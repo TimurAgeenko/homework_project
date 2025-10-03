@@ -20,3 +20,14 @@ def transaction_descriptions(info: list[dict]) -> Union[Iterator[str] or str]:
 
     for item in info:
         yield item["description"]
+
+
+def card_number_generator(start: int, stop: int) -> Union[Iterator[str] or str]:
+    if not isinstance(start, int) or not isinstance(stop, int):
+        return "Укажите начальное и конечное значение числами"
+
+    generator = ("0" * 15 + str(i) for i in range(start, stop + 1))
+
+    for item in generator:
+        result = item[-16:-12] + " " + item[-12:-8] + " " + item[-8:-4] + " " + item[-4:]
+        yield result

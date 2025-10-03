@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 
 def test_filter_by_currency(transactions):
@@ -101,3 +101,19 @@ def test_transaction_descriptions_type_or_empty(transactions):
         next(transaction_descriptions([]))
 
     assert str(exc_info.value) == "Переданы некорректные данные"
+
+
+def test_card_number_generator_type():
+    with pytest.raises(StopIteration) as exc_info:
+        next(card_number_generator(str, str))
+
+    assert str(exc_info.value) == "Укажите начальное и конечное значение числами"
+
+
+def test_card_number_generator():
+    generator = card_number_generator(1, 5)
+    assert next(generator) == "0000 0000 0000 0001"
+    assert next(generator) == "0000 0000 0000 0002"
+    assert next(generator) == "0000 0000 0000 0003"
+    assert next(generator) == "0000 0000 0000 0004"
+    assert next(generator) == "0000 0000 0000 0005"
