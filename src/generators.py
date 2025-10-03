@@ -1,7 +1,7 @@
 from typing import Iterator, Union
 
 
-def filter_by_currency(info: list[dict], currency: str) -> Union[Iterator[dict] or str]:
+def filter_by_currency(info: list[dict], currency: str) -> Union[Iterator[dict], str]:
     if not isinstance(info, list) or not isinstance(currency, str) or not info:
         return "Переданы некорректные данные"
 
@@ -14,7 +14,7 @@ def filter_by_currency(info: list[dict], currency: str) -> Union[Iterator[dict] 
         yield item
 
 
-def transaction_descriptions(info: list[dict]) -> Union[Iterator[str] or str]:
+def transaction_descriptions(info: list[dict]) -> Union[Iterator[str], str]:
     if not isinstance(info, list) or not info:
         return "Переданы некорректные данные"
 
@@ -22,7 +22,7 @@ def transaction_descriptions(info: list[dict]) -> Union[Iterator[str] or str]:
         yield item["description"]
 
 
-def card_number_generator(start: int, stop: int) -> Union[Iterator[str] or str]:
+def card_number_generator(start: int, stop: int) -> Union[Iterator[str], str]:
     if not isinstance(start, int) or not isinstance(stop, int):
         return "Укажите начальное и конечное значение числами"
 
