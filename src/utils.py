@@ -12,4 +12,3 @@ def get_data(path: str) -> list:
             return json.load(f)
     except Exception:
         return []
-
