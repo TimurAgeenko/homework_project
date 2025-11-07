@@ -1,12 +1,13 @@
 from typing import Optional
 
 
-def log(*, filename: Optional[str] = None):
+def log(*, filename: Optional[str] = None) -> None:
     """
     Используется для автоматической регистрации деталей выполнения функций,
     таких как имя функции, передаваемые аргументы, результат выполнения и информация об ошибках.
     Может записывать данные в файл, если указано имя файла, либо выводить их в консоль, если имя не указано.
     """
+
     def decorator(function):
         def wrapper(*args, **kwargs):
             try:
