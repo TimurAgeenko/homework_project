@@ -1,6 +1,6 @@
 import pytest
 
-from src.data_processor import get_csv
+from src.data_processor import get_csv, get_excel
 
 
 def test_get_csv():
@@ -19,3 +19,21 @@ def test_get_csv_not_csv():
     with pytest.raises(ValueError) as e:
         get_csv("./data/operations.json")
     assert str(e.value) == "File './data/operations.json' is not a csv."
+
+
+def test_get_excel():
+    data = get_excel("./data/transactions_excel.xlsx")
+    assert data[0]["id"] == 650703.0
+    assert data[1]["date"] == "2020-12-06T23:00:58Z"
+
+
+def test_get_excel_not_exist():
+    with pytest.raises(FileNotFoundError) as e:
+        get_excel("./data/transaction.xlsx")
+    assert str(e.value) == "File './data/transaction.xlsx' not found."
+
+
+def test_get_excel_not_excel():
+    with pytest.raises(ValueError) as e:
+        get_excel("./data/operations.json")
+    assert str(e.value) == "File './data/operations.json' is not an excel file."
