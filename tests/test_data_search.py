@@ -1,4 +1,4 @@
-from src.data_search import process_bank_search
+from src.data_search import process_bank_operations, process_bank_search
 
 
 def test_process_bank_search(transactions):
@@ -38,3 +38,13 @@ def test_process_bank_search(transactions):
 def test_process_bank_search_not_found(transactions):
     data = process_bank_search(transactions, "обналичивание")
     assert data == []
+
+
+def test_process_bank_operations(transactions):
+    counted_descriptions = process_bank_operations(transactions, ["с карты на карту", "перевод организации"])
+    assert counted_descriptions == {"перевод организации": 2, "с карты на карту": 1}
+
+
+def test_process_bank_operations_not_found(transactions):
+    counted_descriptions = process_bank_operations(transactions, ["обналичивание"])
+    assert counted_descriptions == {}
