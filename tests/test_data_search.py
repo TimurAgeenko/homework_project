@@ -42,7 +42,7 @@ def test_process_bank_search_not_found(transactions):
 
 def test_process_bank_operations(transactions):
     counted_descriptions = process_bank_operations(transactions, ["с карты на карту", "перевод организации"])
-    assert counted_descriptions == {"перевод организации": 2, "с карты на карту": 1}
+    assert counted_descriptions == {"Перевод организации": 2, "Перевод с карты на карту": 1}
 
 
 def test_process_bank_operations_not_found(transactions):
