@@ -3,8 +3,6 @@ from src.masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(account_card_num: str) -> str:
     """Принимает тип и номер карты или счета и возвращает замаскированный вариант"""
-    if not isinstance(account_card_num, str):
-        raise TypeError("Входные данные должны иметь тип str")
 
     account_card_num_list = account_card_num.split()
     digits_counter = 0

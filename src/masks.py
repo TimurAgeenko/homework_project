@@ -10,11 +10,7 @@ logger.setLevel(logging.DEBUG)
 
 def get_mask_card_number(card_number: str) -> str:
     """Принимает номер карты и возвращает его замаскированный вариант"""
-    if not isinstance(card_number, str):
-        logger.error("Возникла ошибка: номер карты не соответствует типу str.")
-        raise TypeError("Номер карты должен иметь тип str")
-
-    elif card_number.isalpha():
+    if card_number.isalpha():
         logger.error("Возникла ошибка: в номере карты содержатся буквы.")
         return "В номере карты не должно быть букв"
 
@@ -30,11 +26,7 @@ def get_mask_card_number(card_number: str) -> str:
 
 def get_mask_account(account_number: str) -> str:
     """Принимает номер счета и возвращает его замаскированный вариант"""
-    if not isinstance(account_number, str):
-        logger.error("Возникла ошибка: номер счета не соответствует типу str.")
-        raise TypeError("Номер счета должен иметь тип str")
-
-    elif account_number.isalpha():
+    if account_number.isalpha():
         logger.error("Возникла ошибка: в номере счета содержатся буквы.")
         return "В номере счета не должно быть букв"
 
