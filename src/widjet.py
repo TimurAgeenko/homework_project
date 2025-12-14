@@ -46,9 +46,6 @@ def get_date(date: str) -> str:
     if not isinstance(date, str):
         raise TypeError("Дата должна иметь тип str")
 
-    elif len(date) != 26:
-        return "Указан неверный формат даты"
-
     elif date[8:10].isdigit() and date[5:7].isdigit() and date[:4].isdigit():
         result = date[8:10] + "." + date[5:7] + "." + date[:4]
         return result
