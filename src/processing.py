@@ -24,9 +24,7 @@ def sort_by_date(info: list[dict], reverse: bool = True) -> list[dict]:
         raise TypeError("Переданы некорректные данные")
 
     for item in info:
-        if len(item["date"]) != 26:
-            raise ValueError("Указан неверный формат даты")
-        elif not item["date"][8:10].isdigit() or not item["date"][5:7].isdigit() or not item["date"][:4].isdigit():
+        if not item["date"][8:10].isdigit() or not item["date"][5:7].isdigit() or not item["date"][:4].isdigit():
             raise ValueError("Дата не должна содержать букв")
 
     result = sorted(info, key=lambda x: dt.datetime.strptime(get_date(x["date"]), "%d.%m.%Y"), reverse=reverse)
